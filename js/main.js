@@ -644,38 +644,24 @@ function renderThemes() {
 
   portfolioData.themes.forEach((theme, idx) => {
     const item = document.createElement('div');
-    item.className = `accordion-item ${idx === 0 ? 'active' : ''}`;
+    item.className = `accordion-item reveal`;
     
     item.innerHTML = `
-      <button class="accordion-header" aria-expanded="${idx === 0}">
+      <div class="accordion-header" style="cursor: default;">
         <div class="acc-title-wrap">
           <span class="acc-num">0${idx + 1}</span>
           <h3 class="acc-title">${theme.title}</h3>
         </div>
-        <svg class="acc-arrow" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-      <div class="accordion-content">
+      </div>
+      <div class="accordion-content" style="grid-template-rows: 1fr;">
         <div class="acc-inner">
           <p class="acc-text">${theme.description}</p>
-          <div class="acc-image">
+          <div class="acc-image" style="opacity: 1; transform: translateX(0);">
             <img src="${theme.imageSrc}" alt="${theme.title} visual" loading="lazy">
           </div>
         </div>
       </div>
     `;
-
-    const btn = item.querySelector('.accordion-header');
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.accordion-item').forEach(el => {
-        if (el !== item) {
-          el.classList.remove('active');
-          el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-        }
-      });
-      const isActive = item.classList.contains('active');
-      item.classList.toggle('active');
-      btn.setAttribute('aria-expanded', !isActive);
-    });
 
     grid.appendChild(item);
   });
