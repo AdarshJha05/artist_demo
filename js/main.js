@@ -86,7 +86,10 @@ const portfolioData = {
   ],
   showCaricatureSlots: true,
   caricatures: [
-    // Leave empty to show elegant empty framed slots, or add objects like: { src: 'path.jpg', alt: 'desc', caption: 'Title' }
+    { src: 'assets/artwork-1.webp', alt: 'Couple fishing a crocodile caricature', caption: 'Creative Couple Portrait' },
+    { src: 'assets/artwork-2.webp', alt: 'Live caricature drawing of a woman lifting barbell', caption: 'Live Event Caricature' },
+    { src: 'assets/artwork-3.webp', alt: 'Breakdancer caricature', caption: 'Custom Caricature' },
+    { src: 'assets/artwork-4.webp', alt: 'Couple piggybacking caricature', caption: 'Personalized Gifting' }
   ],
   contact: {
     phone: "+918130640423",
