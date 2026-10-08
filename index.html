@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +22,12 @@
   <!-- Favicon (SVG) -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   
-  <!-- Fonts -->
+  <!-- Preconnect & Preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" as="style">
+  <link rel="preload" as="image" href="assets/artist-portrait.webp" type="image/webp">
+  
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/styles.css">
@@ -50,156 +53,239 @@
 </head>
 <body>
   
+  <!-- Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
   <!-- Custom Cursor -->
-  <div class="custom-cursor" aria-hidden="true" id="custom-cursor"></div>
+  <div class="custom-cursor" aria-hidden="true" id="custom-cursor">
+    <span class="cursor-text">View</span>
+  </div>
+
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <svg class="preloader-logo" viewBox="0 0 100 100" width="100" height="100">
+      <text x="50" y="65" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="40" font-weight="600" fill="none" stroke="currentColor" stroke-width="1.5">KM</text>
+    </svg>
+  </div>
 
   <!-- Header / Nav -->
+  <div id="scroll-progress"></div>
   <header class="site-header" id="header">
-    <a href="#hero" class="logo-monogram" aria-label="Kajal Mehta Home">KM</a>
-    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Toggle Navigation">
-      ☰
-    </button>
-    <nav>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#works">Selected Works</a></li>
-        <li><a href="#practice">Practice</a></li>
-        <li><a href="#exhibition">Featured</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <a href="#hero" class="logo-monogram magnetic" aria-label="Kajal Mehta Home">KM</a>
+    <div class="header-right">
+      <button id="theme-toggle" class="theme-toggle magnetic" aria-label="Toggle Dark Mode">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="menu-toggle magnetic" id="menu-toggle" aria-expanded="false" aria-label="Toggle Navigation">
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+      <nav id="nav-container">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="magnetic-text">About</a></li>
+          <li><a href="#works" class="magnetic-text">Works</a></li>
+          <li><a href="#practice" class="magnetic-text">Practice</a></li>
+          <li><a href="#exhibition" class="magnetic-text">Featured</a></li>
+          <li><a href="#contact" class="magnetic-text">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
     <!-- Section 1: Hero -->
-    <section id="hero" class="hero container reveal">
+    <section id="hero" class="hero container">
+      <div class="hero-bg-glow" aria-hidden="true"></div>
+      
       <div class="hero-content">
-        <h1 class="hero-title">Kajal Mehta</h1>
-        <p class="hero-subtitle">Visual Artist, BFA, Delhi College of Art</p>
-        <p class="hero-tagline">Exploring everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
-        <div class="hero-actions">
-          <a href="#works" class="btn btn-primary">View Works</a>
-          <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer" class="btn">Follow on Instagram</a>
+        <h1 class="hero-title">
+          <span class="line-mask"><span class="line-inner">Kajal</span></span>
+          <span class="line-mask"><span class="line-inner"><em class="italic-display">Mehta</em></span></span>
+        </h1>
+        <div class="hero-meta">
+          <p class="hero-subtitle line-mask"><span class="line-inner">Visual Artist, BFA, Delhi College of Art</span></p>
+          <div class="hero-tagline-wrap line-mask">
+            <p class="hero-tagline line-inner">Exploring everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
+          </div>
+          <div class="hero-actions line-mask">
+            <div class="line-inner">
+              <a href="#works" class="btn btn-primary magnetic">View Works</a>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="hero-artworks" aria-hidden="true">
-        <!-- Images dynamically loaded from JS for parallax, but we provide fallback here -->
-        <div class="artwork-strip"><img src="assets/artwork-1.jpg" alt="Artwork slice 1" loading="eager"></div>
-        <div class="artwork-strip"><img src="assets/artwork-2.jpg" alt="Artwork slice 2" loading="eager"></div>
-        <div class="artwork-strip"><img src="assets/artwork-3.jpg" alt="Artwork slice 3" loading="eager"></div>
-        <div class="artwork-strip"><img src="assets/artwork-4.jpg" alt="Artwork slice 4" loading="eager"></div>
+      
+      <div class="hero-collage" id="hero-collage" aria-hidden="true">
+        <div class="rotating-badge">
+          <svg viewBox="0 0 100 100">
+            <path id="textPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+            <text><textPath href="#textPath" startOffset="0%">Visual Artist • BFA Delhi College of Art • </textPath></text>
+          </svg>
+        </div>
+        
+        <div class="collage-layer layer-bg" data-speed="0.02">
+          <div class="artwork-strip strip-tall"><img src="assets/artwork-1.webp" alt=""></div>
+        </div>
+        <div class="collage-layer layer-mid1" data-speed="0.04">
+          <div class="artwork-strip strip-wide"><img src="assets/artwork-2.webp" alt=""></div>
+        </div>
+        <div class="collage-layer layer-mid2" data-speed="0.06">
+          <div class="artwork-strip strip-square"><img src="assets/artwork-3.webp" alt=""></div>
+        </div>
+        <div class="collage-layer layer-fg" data-speed="0.08">
+          <div class="artwork-strip strip-tall"><img src="assets/artwork-4.webp" alt=""></div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="mouse"></div>
+        <span>Scroll</span>
       </div>
     </section>
 
     <!-- Section 2: About -->
-    <section id="about" class="container reveal">
-      <span class="label">01 / The Artist</span>
-      <div class="divider"></div>
-      
-      <div class="about">
-        <div class="about-image-wrapper">
-          <div class="about-image-border"></div>
-          <div class="about-image">
-            <picture>
-              <source srcset="assets/artist-portrait.webp" type="image/webp">
-              <img src="assets/artist-portrait.jpg" alt="Portrait of Kajal Mehta" loading="lazy" width="400" height="500">
-            </picture>
-          </div>
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-number">01</div>
+          <div class="section-rule"></div>
+          <h2 class="label">The Artist</h2>
         </div>
-        <div class="about-content">
-          <h2>About</h2>
-          <p class="about-bio">Her practice explores everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
-          <p class="about-edu">Pursuing a Bachelor of Fine Arts (BFA) at Delhi College of Art, New Delhi.</p>
-          <blockquote class="pull-quote italic-display">
-            "Art is the best way to express yourself"
-          </blockquote>
+        
+        <div class="about-grid">
+          <div class="about-visual reveal">
+            <div class="about-image-wrapper">
+              <div class="about-image-border"></div>
+              <div class="about-image mask-reveal">
+                <picture>
+                  <source srcset="assets/artist-portrait.webp" type="image/webp">
+                  <img src="assets/artist-portrait.jpg" alt="Portrait of Kajal Mehta" loading="lazy" width="400" height="500">
+                </picture>
+              </div>
+              <div class="about-stamp" aria-hidden="true">
+                <svg viewBox="0 0 100 100">
+                  <path id="stampPath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
+                  <text><textPath href="#stampPath" startOffset="0%">Everyday life • Familiar places • Ordinary things • </textPath></text>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div class="about-content reveal">
+            <h3 class="about-bio">Her practice explores everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</h3>
+            <p class="about-edu">Pursuing a Bachelor of Fine Arts (BFA) at Delhi College of Art, New Delhi.</p>
+            <blockquote class="pull-quote italic-display">
+              <span class="quote-mark">"</span>Art is the best way to express yourself<span class="quote-mark">"</span>
+            </blockquote>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Selected Works -->
-    <section id="works" class="container reveal">
-      <div class="section-header">
-        <span class="label">02 / Selected Works</span>
-        <div class="divider"></div>
+    <!-- Section 3: Selected Works (Filmstrip on Desktop, Grid on Mobile) -->
+    <section id="works" class="works-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-number">02</div>
+          <div class="section-rule"></div>
+          <h2 class="label">Selected Works</h2>
+        </div>
       </div>
       
-      <div class="gallery-grid" id="gallery-grid">
-        <!-- Populated by JS -->
+      <div class="filmstrip-container" id="filmstrip-container">
+        <div class="filmstrip-track" id="gallery-grid">
+          <!-- Static HTML Fallback / Skeleton injected via JS -->
+        </div>
       </div>
     </section>
 
     <!-- Section 4: Practice / Themes -->
-    <section id="practice" class="container reveal">
-      <div class="section-header">
-        <span class="label">03 / Core Practice</span>
-        <div class="divider"></div>
+    <section id="practice" class="practice-section container">
+      <div class="section-header reveal">
+        <div class="section-number">03</div>
+        <div class="section-rule"></div>
+        <h2 class="label">Core Practice</h2>
       </div>
       
-      <div class="themes-grid" id="themes-grid">
+      <div class="accordion" id="themes-grid">
         <!-- Populated by JS -->
       </div>
     </section>
 
     <!-- Section 5: Exhibition -->
-    <section id="exhibition" class="container reveal">
-      <div class="section-header">
-        <span class="label">04 / Featured At</span>
-        <div class="divider"></div>
+    <section id="exhibition" class="exhibition-section container">
+      <div class="section-header reveal">
+        <div class="section-number">04</div>
+        <div class="section-rule"></div>
+        <h2 class="label">Featured At</h2>
       </div>
       
-      <div class="exhibition-card">
-        <div>
-          <span class="label" style="color: rgba(246, 242, 234, 0.7);">Current Exhibition</span>
-          <h2>Bharat Art Conclave 2026</h2>
-          <div class="exhibition-details">
-            <div class="exhibition-meta">
-              <span>📅</span> 03 - 08 Oct 2026
-            </div>
-            <div class="exhibition-meta">
-              <span>📍</span> Civil Services Officers' Institute, Chanakyapuri, New Delhi
-            </div>
-            <div class="exhibition-meta">
-              <span>🕒</span> 9:00 AM - 10:00 PM
+      <div class="ticket-card reveal">
+        <div class="ticket-perforation"></div>
+        <div class="ticket-content">
+          <div class="ticket-left">
+            <span class="status-badge" id="exhibition-status">Featured Event</span>
+            <h2>Bharat Art Conclave 2026</h2>
+            <div class="ticket-meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Date</span>
+                <span class="meta-value">03 - 08 OCT 2026</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Time</span>
+                <span class="meta-value">9:00 AM - 10:00 PM</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Venue</span>
+                <span class="meta-value">Civil Services Officers' Institute, Chanakyapuri, New Delhi</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <a href="https://www.bharatartconclave.art" target="_blank" rel="noopener noreferrer" class="btn">Visit Conclave Website</a>
+          <div class="ticket-right">
+            <a href="https://www.bharatartconclave.art" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnetic">Visit Website</a>
+            <button class="btn magnetic" id="btn-add-calendar">Add to Calendar</button>
+            <a href="https://maps.google.com/?q=Civil+Services+Officers+Institute+Chanakyapuri+New+Delhi" target="_blank" rel="noopener noreferrer" class="btn-text">Get Directions ↗</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Section 6: Contact -->
-    <section id="contact" class="container reveal">
-      <div class="section-header">
-        <span class="label">05 / Get in Touch</span>
-        <div class="divider"></div>
+    <section id="contact" class="contact-section container">
+      <div class="section-header reveal">
+        <div class="section-number">05</div>
+        <div class="section-rule"></div>
+        <h2 class="label">Get in Touch</h2>
       </div>
       
       <div class="contact-grid">
-        <div class="contact-info">
-          <p>For inquiries regarding artworks, exhibitions, or commissions, please reach out via email or connect on Instagram.</p>
-          <div style="margin-top: var(--space-lg);">
-            <a href="mailto:studio@kajalmehta.art" id="contact-email">studio@kajalmehta.art (Placeholder)</a>
-            <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer">@dakshkalaa_</a>
+        <div class="contact-info reveal">
+          <h2 class="contact-heading">Let's create <em class="italic-display">something</em></h2>
+          <p>For inquiries regarding artworks, exhibitions, or commissions.</p>
+          <div class="contact-links">
+            <a href="mailto:studio@kajalmehta.art" id="contact-email" class="contact-link">studio@kajalmehta.art</a>
+            <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer" class="contact-link social-link">@dakshkalaa_ ↗</a>
           </div>
         </div>
         
-        <form class="contact-form" id="contact-form" novalidate>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required aria-required="true">
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-group floating">
+            <input type="text" id="name" name="name" required aria-required="true" placeholder=" ">
+            <label for="name">Your Name</label>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required aria-required="true">
+          <div class="form-group floating">
+            <input type="email" id="email" name="email" required aria-required="true" placeholder=" ">
+            <label for="email">Your Email</label>
           </div>
-          <div class="form-group">
+          <div class="form-group floating">
+            <textarea id="message" name="message" rows="4" required aria-required="true" placeholder=" "></textarea>
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+          <!-- Honeypot -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          
+          <button type="submit" class="btn btn-primary magnetic" style="align-self: flex-start;">Send Message</button>
           <div id="form-message" class="form-message" role="alert"></div>
         </form>
       </div>
@@ -208,30 +294,46 @@
 
   <footer class="site-footer container">
     <div class="footer-meta">
-      &copy; 2026 Kajal Mehta. All rights reserved.<br>
-      Portfolio Demo
+      &copy; 2026 Kajal Mehta. All rights reserved. <span class="footer-demo">Portfolio Demo</span>
     </div>
-    <button class="back-to-top" id="back-to-top" aria-label="Scroll back to top">
+    <button class="back-to-top magnetic-text" id="back-to-top" aria-label="Scroll back to top">
       Back to Top ↑
     </button>
   </footer>
 
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-backdrop" id="lightbox-close-bg"></div>
     <div class="lightbox-content">
-      <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
-      <div class="lightbox-img-wrapper">
-        <img id="lightbox-img" src="" alt="Enlarged Artwork" class="lightbox-img">
-        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
-        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+      <div class="lightbox-header">
+        <div class="lightbox-counter" id="lightbox-counter">1 / 4</div>
+        <button class="lightbox-close magnetic" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
       </div>
-      <div class="lightbox-caption">
-        <h3 id="lightbox-title" class="caption-title"></h3>
-        <p id="lightbox-meta" class="caption-meta"></p>
+      
+      <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Enlarged Artwork" class="lightbox-img">
+      </div>
+      
+      <div class="lightbox-footer">
+        <div class="lightbox-caption">
+          <h3 id="lightbox-title" class="caption-title"></h3>
+          <p id="lightbox-meta" class="caption-meta"></p>
+        </div>
+        <div class="lightbox-nav-group">
+          <button class="lightbox-nav lightbox-prev magnetic" id="lightbox-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="lightbox-nav lightbox-next magnetic" id="lightbox-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
