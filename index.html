@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kajal Mehta | Visual Artist</title>
+  <meta name="description" content="Portfolio of Kajal Mehta, a Visual Artist pursuing BFA at Delhi College of Art. Exploring everyday life, familiar surroundings, and ordinary elements.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kajal Mehta | Visual Artist">
+  <meta property="og:description" content="Portfolio of Kajal Mehta, exploring everyday life through an artistic lens.">
+  <meta property="og:image" content="assets/artist-portrait.jpg">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kajal Mehta | Visual Artist">
+  <meta name="twitter:description" content="Portfolio of Kajal Mehta, exploring everyday life through an artistic lens.">
+  <meta name="twitter:image" content="assets/artist-portrait.jpg">
+  
+  <!-- Favicon (SVG) -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kajal Mehta",
+    "jobTitle": "Visual Artist",
+    "url": "https://kajalmehta.art",
+    "image": "assets/artist-portrait.jpg",
+    "sameAs": [
+      "https://www.instagram.com/dakshkalaa_"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Delhi College of Art"
+    }
+  }
+  </script>
+</head>
+<body>
+  
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" aria-hidden="true" id="custom-cursor"></div>
+
+  <!-- Header / Nav -->
+  <header class="site-header" id="header">
+    <a href="#hero" class="logo-monogram" aria-label="Kajal Mehta Home">KM</a>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Toggle Navigation">
+      ☰
+    </button>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#works">Selected Works</a></li>
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#exhibition">Featured</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section id="hero" class="hero container reveal">
+      <div class="hero-content">
+        <h1 class="hero-title">Kajal Mehta</h1>
+        <p class="hero-subtitle">Visual Artist, BFA, Delhi College of Art</p>
+        <p class="hero-tagline">Exploring everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
+        <div class="hero-actions">
+          <a href="#works" class="btn btn-primary">View Works</a>
+          <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer" class="btn">Follow on Instagram</a>
+        </div>
+      </div>
+      <div class="hero-artworks" aria-hidden="true">
+        <!-- Images dynamically loaded from JS for parallax, but we provide fallback here -->
+        <div class="artwork-strip"><img src="assets/artwork-1.jpg" alt="Artwork slice 1" loading="eager"></div>
+        <div class="artwork-strip"><img src="assets/artwork-2.jpg" alt="Artwork slice 2" loading="eager"></div>
+        <div class="artwork-strip"><img src="assets/artwork-3.jpg" alt="Artwork slice 3" loading="eager"></div>
+        <div class="artwork-strip"><img src="assets/artwork-4.jpg" alt="Artwork slice 4" loading="eager"></div>
+      </div>
+    </section>
+
+    <!-- Section 2: About -->
+    <section id="about" class="container reveal">
+      <span class="label">01 / The Artist</span>
+      <div class="divider"></div>
+      
+      <div class="about">
+        <div class="about-image-wrapper">
+          <div class="about-image-border"></div>
+          <div class="about-image">
+            <picture>
+              <source srcset="assets/artist-portrait.webp" type="image/webp">
+              <img src="assets/artist-portrait.jpg" alt="Portrait of Kajal Mehta" loading="lazy" width="400" height="500">
+            </picture>
+          </div>
+        </div>
+        <div class="about-content">
+          <h2>About</h2>
+          <p class="about-bio">Her practice explores everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
+          <p class="about-edu">Pursuing a Bachelor of Fine Arts (BFA) at Delhi College of Art, New Delhi.</p>
+          <blockquote class="pull-quote italic-display">
+            "Art is the best way to express yourself"
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Selected Works -->
+    <section id="works" class="container reveal">
+      <div class="section-header">
+        <span class="label">02 / Selected Works</span>
+        <div class="divider"></div>
+      </div>
+      
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 4: Practice / Themes -->
+    <section id="practice" class="container reveal">
+      <div class="section-header">
+        <span class="label">03 / Core Practice</span>
+        <div class="divider"></div>
+      </div>
+      
+      <div class="themes-grid" id="themes-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 5: Exhibition -->
+    <section id="exhibition" class="container reveal">
+      <div class="section-header">
+        <span class="label">04 / Featured At</span>
+        <div class="divider"></div>
+      </div>
+      
+      <div class="exhibition-card">
+        <div>
+          <span class="label" style="color: rgba(246, 242, 234, 0.7);">Current Exhibition</span>
+          <h2>Bharat Art Conclave 2026</h2>
+          <div class="exhibition-details">
+            <div class="exhibition-meta">
+              <span>📅</span> 03 - 08 Oct 2026
+            </div>
+            <div class="exhibition-meta">
+              <span>📍</span> Civil Services Officers' Institute, Chanakyapuri, New Delhi
+            </div>
+            <div class="exhibition-meta">
+              <span>🕒</span> 9:00 AM - 10:00 PM
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="https://www.bharatartconclave.art" target="_blank" rel="noopener noreferrer" class="btn">Visit Conclave Website</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Contact -->
+    <section id="contact" class="container reveal">
+      <div class="section-header">
+        <span class="label">05 / Get in Touch</span>
+        <div class="divider"></div>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>For inquiries regarding artworks, exhibitions, or commissions, please reach out via email or connect on Instagram.</p>
+          <div style="margin-top: var(--space-lg);">
+            <a href="mailto:studio@kajalmehta.art" id="contact-email">studio@kajalmehta.art (Placeholder)</a>
+            <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer">@dakshkalaa_</a>
+          </div>
+        </div>
+        
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required aria-required="true">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required aria-required="true">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+          <div id="form-message" class="form-message" role="alert"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="footer-meta">
+      &copy; 2026 Kajal Mehta. All rights reserved.<br>
+      Portfolio Demo
+    </div>
+    <button class="back-to-top" id="back-to-top" aria-label="Scroll back to top">
+      Back to Top ↑
+    </button>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Enlarged Artwork" class="lightbox-img">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+      </div>
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title" class="caption-title"></h3>
+        <p id="lightbox-meta" class="caption-meta"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
