@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dakshakalaa - Kajal Mehta | Visual Artist & Caricature Artist</title>
   
-  <title>Kajal Mehta | Visual Artist</title>
-  <meta name="description" content="Portfolio of Kajal Mehta, a Visual Artist pursuing BFA at Delhi College of Art. Exploring everyday life, familiar surroundings, and ordinary elements.">
+  <meta name="description" content="Portfolio of Kajal Mehta (Dakshakalaa), a Visual Artist and Caricature Artist based in Delhi, India. Featuring paintings of everyday life, live caricature services for events, and custom portraits.">
+  <meta name="keywords" content="Dakshakalaa, Kajal Mehta, Visual Artist, Caricature Artist, Live Caricature, Fine Art, Delhi Artist, Painter, BFA Delhi College of Art">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Kajal Mehta | Visual Artist">
-  <meta property="og:description" content="Portfolio of Kajal Mehta, exploring everyday life through an artistic lens.">
-  <meta property="og:image" content="assets/artist-portrait.jpg">
+  <meta property="og:title" content="Dakshakalaa - Kajal Mehta Portfolio">
+  <meta property="og:description" content="Visual Artist and Caricature Artist based in Delhi, exploring everyday life and providing live caricature services across India.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kajalmehta.art"> <!-- Placeholder -->
+  <meta property="og:image" content="assets/artist-portrait.webp">
   
-  <!-- Twitter -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kajal Mehta | Visual Artist">
-  <meta name="twitter:description" content="Portfolio of Kajal Mehta, exploring everyday life through an artistic lens.">
-  <meta name="twitter:image" content="assets/artist-portrait.jpg">
+  <meta name="twitter:title" content="Dakshakalaa - Kajal Mehta">
+  <meta name="twitter:description" content="Visual Artist and Caricature Artist based in Delhi.">
   
-  <!-- Favicon (SVG) -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  
-  <!-- Preconnect & Preload -->
+  <!-- Preload Critical Assets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" as="style">
-  <link rel="preload" as="image" href="assets/artist-portrait.webp" type="image/webp">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/artist-portrait.webp" as="image">
   
   <link rel="stylesheet" href="css/styles.css">
   
@@ -38,292 +34,474 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Kajal Mehta",
-    "jobTitle": "Visual Artist",
-    "url": "https://kajalmehta.art",
-    "image": "assets/artist-portrait.jpg",
+    "alternateName": "Dakshakalaa",
+    "jobTitle": "Visual Artist and Caricature Artist",
+    "url": "https://www.kajalmehta.art",
     "sameAs": [
       "https://www.instagram.com/dakshkalaa_"
     ],
     "alumniOf": {
       "@type": "CollegeOrUniversity",
-      "name": "Delhi College of Art"
-    }
+      "name": "Delhi College of Art",
+      "location": "New Delhi"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "Dakshakalaa"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Delhi",
+      "addressCountry": "IN"
+    },
+    "areaServed": "India",
+    "telephone": "+918130640423",
+    "description": "Visual Artist exploring everyday life and ordinary elements. Also provides live caricature services for events Pan India."
   }
   </script>
 </head>
 <body>
-  
-  <!-- Noise Overlay -->
-  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Subtle Film Grain -->
+  <div class="grain-overlay"></div>
 
   <!-- Custom Cursor -->
-  <div class="custom-cursor" aria-hidden="true" id="custom-cursor">
+  <div class="custom-cursor" id="custom-cursor">
     <span class="cursor-text">View</span>
   </div>
 
   <!-- Preloader -->
-  <div id="preloader" class="preloader">
-    <svg class="preloader-logo" viewBox="0 0 100 100" width="100" height="100">
-      <text x="50" y="65" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="40" font-weight="600" fill="none" stroke="currentColor" stroke-width="1.5">KM</text>
+  <div class="preloader" id="preloader">
+    <svg class="preloader-logo" viewBox="0 0 100 100">
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">DK</text>
     </svg>
   </div>
 
-  <!-- Header / Nav -->
+  <!-- Scroll Progress -->
   <div id="scroll-progress"></div>
+
+  <!-- Sticky Book Now Pill -->
+  <a href="#contact" class="btn btn-accent sticky-pill magnetic">Book Now</a>
+
+  <!-- Header -->
   <header class="site-header" id="header">
-    <a href="#hero" class="logo-monogram magnetic" aria-label="Kajal Mehta Home">KM</a>
+    <a href="#" class="logo-group magnetic" aria-label="Home">
+      <span class="logo-mark brand-name">Dakshakalaa</span>
+      <span class="logo-label">by <span class="artist-name">Kajal Mehta</span></span>
+    </a>
+    
     <div class="header-right">
-      <button id="theme-toggle" class="theme-toggle magnetic" aria-label="Toggle Dark Mode">
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
-      <button class="menu-toggle magnetic" id="menu-toggle" aria-expanded="false" aria-label="Toggle Navigation">
-        <span class="line"></span>
-        <span class="line"></span>
-      </button>
-      <nav id="nav-container">
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#about" class="magnetic-text">About</a></li>
-          <li><a href="#works" class="magnetic-text">Works</a></li>
-          <li><a href="#practice" class="magnetic-text">Practice</a></li>
-          <li><a href="#exhibition" class="magnetic-text">Featured</a></li>
-          <li><a href="#contact" class="magnetic-text">Contact</a></li>
-        </ul>
+      <nav class="nav-links" id="nav-links">
+        <li><a href="#about" class="magnetic">01 / The Artist</a></li>
+        <li><a href="#works" class="magnetic">02 / Selected Works</a></li>
+        <li><a href="#practice" class="magnetic">03 / Core Practice</a></li>
+        <li><a href="#services" class="magnetic">04 / Services</a></li>
+        <li><a href="#featured" class="magnetic">05 / Featured At</a></li>
+        <li><a href="#contact" class="magnetic">06 / Get In Touch</a></li>
       </nav>
+      
+      <button class="theme-toggle magnetic" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
     </div>
   </header>
 
+  <!-- Main Content -->
   <main>
-    <!-- Section 1: Hero -->
-    <section id="hero" class="hero container">
-      <div class="hero-bg-glow" aria-hidden="true"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero container edge-soft">
+      <div class="hero-bg-glow"></div>
       
       <div class="hero-content">
+        <div class="hero-eyebrow label reveal"><span class="brand-name">Dakshakalaa</span> - Delhi, India</div>
         <h1 class="hero-title">
-          <span class="line-mask"><span class="line-inner">Kajal</span></span>
-          <span class="line-mask"><span class="line-inner"><em class="italic-display">Mehta</em></span></span>
+          <span class="line-mask"><span class="line-inner artist-name">Kajal Mehta</span></span>
+          <span class="line-mask"><span class="line-inner italic-display">Portfolio.</span></span>
         </h1>
-        <div class="hero-meta">
-          <p class="hero-subtitle line-mask"><span class="line-inner">Visual Artist, BFA, Delhi College of Art</span></p>
-          <div class="hero-tagline-wrap line-mask">
-            <p class="hero-tagline line-inner">Exploring everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</p>
-          </div>
-          <div class="hero-actions line-mask">
-            <div class="line-inner">
-              <a href="#works" class="btn btn-primary magnetic">View Works</a>
-            </div>
-          </div>
+        
+        <div class="hero-subtitle hero-meta">
+          <span class="line-mask"><span class="line-inner">Visual Artist <span style="opacity:0.3">|</span> Caricature Artist</span></span>
+          <span class="line-mask"><span class="line-inner" style="font-size: 0.8em; opacity: 0.8;">BFA, Delhi College of Art</span></span>
+        </div>
+        
+        <div class="hero-actions reveal">
+          <a href="#works" class="btn btn-primary magnetic">View Selected Works</a>
+          <a href="#services" class="btn btn-ghost magnetic">Live Caricature Services</a>
+        </div>
+        
+        <div class="hero-info-row reveal">
+          <span class="hero-info-item">Delhi, India</span>
+          <span class="hero-info-item">Pan India Bookings</span>
+          <span class="hero-info-item">2000+ Events</span>
         </div>
       </div>
-      
-      <div class="hero-collage" id="hero-collage" aria-hidden="true">
+
+      <div class="hero-collage" id="hero-collage">
         <div class="rotating-badge">
           <svg viewBox="0 0 100 100">
-            <path id="textPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
-            <text><textPath href="#textPath" startOffset="0%">Visual Artist • BFA Delhi College of Art • </textPath></text>
+            <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+            <text><textPath href="#circle">Visual Artist • Caricature Artist • </textPath></text>
           </svg>
         </div>
         
         <div class="collage-layer layer-bg" data-speed="0.02">
-          <div class="artwork-strip strip-tall"><img src="assets/artwork-1.webp" alt=""></div>
-        </div>
-        <div class="collage-layer layer-mid1" data-speed="0.04">
-          <div class="artwork-strip strip-wide"><img src="assets/artwork-2.webp" alt=""></div>
-        </div>
-        <div class="collage-layer layer-mid2" data-speed="0.06">
-          <div class="artwork-strip strip-square"><img src="assets/artwork-3.webp" alt=""></div>
-        </div>
-        <div class="collage-layer layer-fg" data-speed="0.08">
-          <div class="artwork-strip strip-tall"><img src="assets/artwork-4.webp" alt=""></div>
-        </div>
-      </div>
-      
-      <div class="scroll-indicator" aria-hidden="true">
-        <div class="mouse"></div>
-        <span>Scroll</span>
-      </div>
-    </section>
-
-    <!-- Section 2: About -->
-    <section id="about" class="about-section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-number">01</div>
-          <div class="section-rule"></div>
-          <h2 class="label">The Artist</h2>
-        </div>
-        
-        <div class="about-grid">
-          <div class="about-visual reveal">
-            <div class="about-image-wrapper">
-              <div class="about-image-border"></div>
-              <div class="about-image mask-reveal">
-                <picture>
-                  <source srcset="assets/artist-portrait.webp" type="image/webp">
-                  <img src="assets/artist-portrait.jpg" alt="Portrait of Kajal Mehta" loading="lazy" width="400" height="500">
-                </picture>
-              </div>
-              <div class="about-stamp" aria-hidden="true">
-                <svg viewBox="0 0 100 100">
-                  <path id="stampPath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
-                  <text><textPath href="#stampPath" startOffset="0%">Everyday life • Familiar places • Ordinary things • </textPath></text>
-                </svg>
-              </div>
+          <div class="artwork-strip strip-tall gallery-framed">
+            <div class="framed-mat">
+              <picture>
+                <source srcset="assets/artwork-1.webp" type="image/webp">
+                <img src="assets/artwork-1.jpg" alt="Art detail" fetchpriority="high">
+              </picture>
             </div>
           </div>
-          
-          <div class="about-content reveal">
-            <h3 class="about-bio">Her practice explores everyday life, familiar surroundings, and ordinary elements, transforming them into creative expressions through an artistic lens.</h3>
-            <p class="about-edu">Pursuing a Bachelor of Fine Arts (BFA) at Delhi College of Art, New Delhi.</p>
-            <blockquote class="pull-quote italic-display">
-              <span class="quote-mark">"</span>Art is the best way to express yourself<span class="quote-mark">"</span>
-            </blockquote>
+        </div>
+        <div class="collage-layer layer-mid1" data-speed="0.04">
+          <div class="artwork-strip strip-wide gallery-framed">
+            <div class="framed-mat">
+              <picture>
+                <source srcset="assets/artwork-2.webp" type="image/webp">
+                <img src="assets/artwork-2.jpg" alt="Art detail">
+              </picture>
+            </div>
+          </div>
+        </div>
+        <div class="collage-layer layer-mid2" data-speed="0.06">
+          <div class="artwork-strip strip-square gallery-framed">
+            <div class="framed-mat">
+              <picture>
+                <source srcset="assets/artwork-3.webp" type="image/webp">
+                <img src="assets/artwork-3.jpg" alt="Art detail">
+              </picture>
+            </div>
+          </div>
+        </div>
+        <div class="collage-layer layer-fg" data-speed="0.08">
+          <div class="artwork-strip strip-tall gallery-framed">
+            <div class="framed-mat">
+              <picture>
+                <source srcset="assets/artwork-4.webp" type="image/webp">
+                <img src="assets/artwork-4.jpg" alt="Art detail">
+              </picture>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Selected Works (Filmstrip on Desktop, Grid on Mobile) -->
-    <section id="works" class="works-section">
+    <!-- 01 About -->
+    <section id="about" class="container bg-alt edge-soft" style="padding-left: var(--space-4); padding-right: var(--space-4); max-width: 100%;">
+      <div class="container" style="padding:0">
+        <div class="section-header reveal">
+          <span class="section-number">01 / 06</span>
+          <div class="section-rule"></div>
+          <span class="label">The Artist</span>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-visual reveal">
+            <div class="about-image-border"></div>
+            <div class="about-image mask-reveal">
+              <picture>
+                <source srcset="assets/artist-portrait.webp" type="image/webp">
+                <img src="assets/artist-portrait.jpg" alt="Portrait of Kajal Mehta" loading="lazy">
+              </picture>
+            </div>
+            <div class="about-stamp">
+              <svg viewBox="0 0 100 100">
+                <path id="stamp-circle" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
+                <text><textPath href="#stamp-circle">Fine Arts • Delhi College of Art • </textPath></text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="about-content reveal">
+            <h3>I am <span class="artist-name">Kajal Mehta</span>, a Visual Artist behind the brand <span class="brand-name italic-display">Dakshakalaa</span>. My fine art practice explores <span class="italic-display" style="color: var(--color-accent)">everyday life</span>, familiar surroundings, and ordinary elements.</h3>
+            
+            <div class="about-edu">
+              <span class="edu-label">Education</span>
+              <span class="edu-val">Pursuing Bachelor of Fine Arts (BFA)<br>Delhi College of Art, New Delhi</span>
+            </div>
+            
+            <div class="pull-quote">
+              <span class="quote-mark">"</span>
+              Art is the best way to express yourself.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Selected Works -->
+    <section id="works" class="works-section edge-soft">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-number">02</div>
+          <span class="section-number">02 / 06</span>
           <div class="section-rule"></div>
-          <h2 class="label">Selected Works</h2>
+          <span class="label">Selected Works</span>
         </div>
       </div>
-      
+
       <div class="filmstrip-container" id="filmstrip-container">
+        <!-- Rendered by main.js -->
         <div class="filmstrip-track" id="gallery-grid">
-          <!-- Static HTML Fallback / Skeleton injected via JS -->
+           <!-- Fallback text while loading -->
+           <p style="padding: 0 var(--space-4);">Loading gallery...</p>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Practice / Themes -->
-    <section id="practice" class="practice-section container">
-      <div class="section-header reveal">
-        <div class="section-number">03</div>
-        <div class="section-rule"></div>
-        <h2 class="label">Core Practice</h2>
-      </div>
-      
-      <div class="accordion" id="themes-grid">
-        <!-- Populated by JS -->
+    <!-- 03 Core Practice -->
+    <section id="practice" class="container bg-alt edge-soft" style="padding-left: var(--space-4); padding-right: var(--space-4); max-width: 100%;">
+      <div class="container" style="padding:0">
+        <div class="section-header reveal">
+          <span class="section-number">03 / 06</span>
+          <div class="section-rule"></div>
+          <span class="label">Core Practice</span>
+        </div>
+
+        <div class="accordion reveal" id="themes-grid">
+          <!-- Rendered by main.js -->
+        </div>
       </div>
     </section>
 
-    <!-- Section 5: Exhibition -->
-    <section id="exhibition" class="exhibition-section container">
-      <div class="section-header reveal">
-        <div class="section-number">04</div>
-        <div class="section-rule"></div>
-        <h2 class="label">Featured At</h2>
+    <!-- 04 Services (New) -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">04 / 06</span>
+          <div class="section-rule"></div>
+          <span class="label">Services</span>
+        </div>
+
+        <div class="services-intro reveal">
+          <h2 class="services-headline">Live Caricature,<br><span class="italic-display" style="color:var(--color-accent)">Made for Your Event</span></h2>
+          <p style="margin: 0 auto;">Bringing a unique, interactive artistic experience to weddings, corporate events, and parties across India.</p>
+        </div>
+
+        <div class="stats-strip reveal">
+          <div class="stat-item">
+            <div class="stat-val stat-num" data-target="2000">0</div>
+            <div class="stat-label">Events Completed+</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val stat-num" data-target="4">0</div>
+            <div class="stat-label">Years Experience+</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">Pan</div>
+            <div class="stat-label">India Availability</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">Delhi</div>
+            <div class="stat-label">Based Studio</div>
+          </div>
+        </div>
+
+        <div class="services-grid" id="services-grid">
+          <!-- Rendered by main.js -->
+        </div>
+
+        <!-- Caricature Showcase (Empty State / Images) -->
+        <div class="caricature-showcase reveal" id="caricature-showcase">
+          <!-- Rendered by main.js -->
+        </div>
+
+        <div class="booking-steps reveal">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h4>Enquire</h4>
+            <p style="font-size: var(--text-sm); opacity: 0.8">Share your event details, date, and location with us.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h4>Confirm</h4>
+            <p style="font-size: var(--text-sm); opacity: 0.8">We'll confirm availability, package details, and lock the date.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h4>Enjoy</h4>
+            <p style="font-size: var(--text-sm); opacity: 0.8">Relax as we entertain your guests with live sketching.</p>
+          </div>
+        </div>
+
+        <div class="service-ctas reveal">
+          <a href="tel:+918130640423" class="btn btn-primary magnetic">Call to Book</a>
+          <a href="#" class="btn btn-accent magnetic wa-link" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#contact" class="btn btn-ghost magnetic">Enquire Online</a>
+        </div>
       </div>
-      
+    </section>
+
+    <!-- 05 Featured At -->
+    <section id="featured" class="featured-section container edge-soft">
+      <div class="section-header reveal">
+        <span class="section-number">05 / 06</span>
+        <div class="section-rule"></div>
+        <span class="label">Featured At</span>
+      </div>
+
       <div class="ticket-card reveal">
+        <div class="ticket-accent-edge"></div>
         <div class="ticket-perforation"></div>
+        
         <div class="ticket-content">
           <div class="ticket-left">
-            <span class="status-badge" id="exhibition-status">Featured Event</span>
-            <h2>Bharat Art Conclave 2026</h2>
+            <span class="status-badge" id="exhibition-status">Loading Status</span>
+            <h2>Bharat Art Conclave</h2>
             <div class="ticket-meta-grid">
               <div class="meta-item">
                 <span class="meta-label">Date</span>
-                <span class="meta-value">03 - 08 OCT 2026</span>
+                <span class="meta-value">03 - 08 Oct 2026</span>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Time</span>
                 <span class="meta-value">9:00 AM - 10:00 PM</span>
               </div>
-              <div class="meta-item">
-                <span class="meta-label">Venue</span>
+              <div class="meta-item" style="grid-column: 1 / -1; margin-top: 0.5rem;">
+                <span class="meta-label">Location</span>
                 <span class="meta-value">Civil Services Officers' Institute, Chanakyapuri, New Delhi</span>
               </div>
             </div>
           </div>
+          
           <div class="ticket-right">
-            <a href="https://www.bharatartconclave.art" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnetic">Visit Website</a>
-            <button class="btn magnetic" id="btn-add-calendar">Add to Calendar</button>
-            <a href="https://maps.google.com/?q=Civil+Services+Officers+Institute+Chanakyapuri+New+Delhi" target="_blank" rel="noopener noreferrer" class="btn-text">Get Directions ↗</a>
+            <div class="barcode"></div>
+            <a href="https://www.bharatartconclave.art" target="_blank" rel="noopener" class="btn btn-secondary magnetic" style="width:100%; border-color: var(--color-primary); color: var(--color-primary);">Visit Website</a>
+            <button id="btn-add-calendar" class="btn-text" style="align-self: center; color: var(--color-primary);">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Add to Calendar
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 6: Contact -->
-    <section id="contact" class="contact-section container">
-      <div class="section-header reveal">
-        <div class="section-number">05</div>
-        <div class="section-rule"></div>
-        <h2 class="label">Get in Touch</h2>
-      </div>
-      
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <h2 class="contact-heading">Let's create <em class="italic-display">something</em></h2>
-          <p>For inquiries regarding artworks, exhibitions, or commissions.</p>
-          <div class="contact-links">
-            <a href="mailto:studio@kajalmehta.art" id="contact-email" class="contact-link">studio@kajalmehta.art</a>
-            <a href="https://www.instagram.com/dakshkalaa_" target="_blank" rel="noopener noreferrer" class="contact-link social-link">@dakshkalaa_ ↗</a>
-          </div>
+    <!-- 06 Contact -->
+    <section id="contact" class="container bg-alt edge-soft" style="padding-left: var(--space-4); padding-right: var(--space-4); max-width: 100%;">
+      <div class="container" style="padding:0">
+        <div class="section-header reveal">
+          <span class="section-number">06 / 06</span>
+          <div class="section-rule"></div>
+          <span class="label">Get in Touch</span>
         </div>
-        
-        <form class="contact-form reveal" id="contact-form" novalidate>
-          <div class="form-group floating">
-            <input type="text" id="name" name="name" required aria-required="true" placeholder=" ">
-            <label for="name">Your Name</label>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h2 class="contact-heading">Let's create <br><span class="italic-display" style="color: var(--color-accent);">something.</span></h2>
+            <p style="color: var(--color-text-light);">Available for fine art commissions, live caricature bookings, and event collaborations.</p>
+            
+            <div class="contact-links">
+              <a href="#" class="contact-link-row phone-line magnetic">
+                <span>Call Us</span>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#" class="contact-link-row wa-link magnetic" target="_blank" rel="noopener">
+                <span>WhatsApp</span>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#" class="contact-link-row social-handle magnetic" target="_blank" rel="noopener">
+                <span>Instagram</span>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#" class="contact-link-row email-line magnetic" style="font-size: var(--text-lg); display: none;">
+                <!-- Filled via JS if email exists -->
+              </a>
+            </div>
           </div>
-          <div class="form-group floating">
-            <input type="email" id="email" name="email" required aria-required="true" placeholder=" ">
-            <label for="email">Your Email</label>
-          </div>
-          <div class="form-group floating">
-            <textarea id="message" name="message" rows="4" required aria-required="true" placeholder=" "></textarea>
-            <label for="message">Message</label>
-          </div>
-          <!-- Honeypot -->
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-          
-          <button type="submit" class="btn btn-primary magnetic" style="align-self: flex-start;">Send Message</button>
-          <div id="form-message" class="form-message" role="alert"></div>
-        </form>
+
+          <form id="contact-form" class="contact-form reveal">
+            <h3 style="font-family: var(--font-body); font-size: var(--text-lg); font-weight: 500; margin-bottom: 0.5rem;">Send an Enquiry</h3>
+            <!-- Honeypot for spam -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            
+            <div class="form-row">
+              <div class="form-group floating">
+                <input type="text" id="name" name="name" required placeholder=" ">
+                <label for="name">Your Name *</label>
+              </div>
+              <div class="form-group floating">
+                <input type="email" id="email" name="email" required placeholder=" ">
+                <label for="email">Email Address *</label>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group floating">
+                <select id="event-type" name="event_type">
+                  <option value=""></option>
+                  <option value="wedding">Wedding / Pre-Wedding</option>
+                  <option value="corporate">Corporate Event</option>
+                  <option value="party">Private Party / Birthday</option>
+                  <option value="portrait">Custom Portrait / Gift</option>
+                  <option value="other">Fine Art Commission / Other</option>
+                </select>
+                <label for="event-type">Event Type (Optional)</label>
+              </div>
+              <div class="form-group floating">
+                <input type="text" id="city" name="city" placeholder=" ">
+                <label for="city">City / Location (Optional)</label>
+              </div>
+            </div>
+
+            <div class="form-group floating">
+              <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+              <label for="message">Your Message or Event Details *</label>
+            </div>
+            
+            <div id="form-message" class="form-message" role="alert"></div>
+            
+            <button type="submit" class="btn btn-primary magnetic" style="width: 100%; margin-top: 1rem;">Send Enquiry</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer container">
     <div class="footer-meta">
-      &copy; 2026 Kajal Mehta. All rights reserved. <span class="footer-demo">Portfolio Demo</span>
+      <span>&copy; 2026 <span class="brand-name">Dakshakalaa</span> - <span class="artist-name">Kajal Mehta</span>.</span>
+      <span class="footer-demo">Portfolio Demo</span>
     </div>
-    <button class="back-to-top magnetic-text" id="back-to-top" aria-label="Scroll back to top">
-      Back to Top ↑
-    </button>
+    
+    <div style="display: flex; gap: var(--space-4); align-items: center;">
+      <a href="#" class="social-handle magnetic" target="_blank" rel="noopener">Instagram</a>
+      <button id="back-to-top" class="back-to-top magnetic">
+        Back to Top
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      </button>
+    </div>
   </footer>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image gallery">
     <div class="lightbox-backdrop" id="lightbox-close-bg"></div>
     <div class="lightbox-content">
       <div class="lightbox-header">
         <div class="lightbox-counter" id="lightbox-counter">1 / 4</div>
-        <button class="lightbox-close magnetic" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close gallery">&times;</button>
       </div>
       
       <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
-        <img id="lightbox-img" src="" alt="Enlarged Artwork" class="lightbox-img">
+        <img src="" alt="" class="lightbox-img" id="lightbox-img">
       </div>
       
       <div class="lightbox-footer">
         <div class="lightbox-caption">
-          <h3 id="lightbox-title" class="caption-title"></h3>
-          <p id="lightbox-meta" class="caption-meta"></p>
+          <div class="caption-title" id="lightbox-title">Title</div>
+          <div class="caption-meta" id="lightbox-meta">Meta details</div>
         </div>
         <div class="lightbox-nav-group">
-          <button class="lightbox-nav lightbox-prev magnetic" id="lightbox-prev" aria-label="Previous image">
+          <button class="lightbox-nav" id="lightbox-prev" aria-label="Previous image">
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
-          <button class="lightbox-nav lightbox-next magnetic" id="lightbox-next" aria-label="Next image">
+          <button class="lightbox-nav" id="lightbox-next" aria-label="Next image">
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
@@ -331,7 +509,7 @@
     </div>
   </div>
 
-  <!-- GSAP & ScrollTrigger -->
+  <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>

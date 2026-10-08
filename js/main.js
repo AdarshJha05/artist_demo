@@ -1,5 +1,5 @@
 /**
- * Kajal Mehta Portfolio
+ * Dakshakalaa Portfolio
  * Premium JavaScript - GSAP, ScrollTrigger, & Interactions
  */
 
@@ -7,6 +7,11 @@
 // CONTENT DATA BLOCK (Editable)
 // ==========================================
 const portfolioData = {
+  brandName: "Dakshakalaa",
+  artistName: "Kajal Mehta",
+  instagramHandle: "@dakshkalaa_",
+  instagramUrl: "https://www.instagram.com/dakshkalaa_",
+  
   artworks: [
     {
       id: 1,
@@ -48,22 +53,46 @@ const portfolioData = {
   themes: [
     {
       title: "Everyday Life",
-      description: "Exploring the quiet moments and rhythms that define our daily existence.",
+      description: "Finding stories in the quiet, ordinary rhythms of daily life.",
       imageSrc: "assets/artwork-1.webp" // Used for hover reveal
     },
     {
       title: "Familiar Surroundings",
-      description: "Finding beauty and meaning in the spaces we often overlook.",
+      description: "Looking again at the spaces and places we pass without a second glance.",
       imageSrc: "assets/artwork-2.webp"
     },
     {
       title: "Ordinary Elements",
-      description: "Transforming simple objects into creative expressions through an artistic lens.",
+      description: "Turning simple, overlooked objects into expressive, considered work.",
       imageSrc: "assets/artwork-3.webp"
     }
   ],
+  services: [
+    {
+      title: "Live Caricature at Events",
+      description: "Engaging live entertainment for your guests, creating memorable takeaways.", // TODO: Confirm with artist (pricing, event types)
+      isHero: true
+    },
+    {
+      title: "Custom Caricature Portraits",
+      description: "Personalized artwork perfect for unique gifting and special occasions.", // TODO: Confirm with artist (pricing, turnaround)
+      isHero: false
+    },
+    {
+      title: "Event & Brand Collaborations",
+      description: "Custom creative partnerships to elevate your brand experience.", // TODO: Confirm with artist (scope, rates)
+      isHero: false
+    }
+  ],
+  showCaricatureSlots: true,
+  caricatures: [
+    // Leave empty to show elegant empty framed slots, or add objects like: { src: 'path.jpg', alt: 'desc', caption: 'Title' }
+  ],
   contact: {
-    email: "studio@kajalmehta.art (Placeholder)" // TODO: Update with real email
+    phone: "+918130640423",
+    displayPhone: "+91 8130640423",
+    whatsappMsg: "Hi, I'd like to enquire about a caricature booking.",
+    email: "" // TODO: Update with real email. Will hide if empty.
   }
 };
 
@@ -80,13 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
   }
 
+  injectBrandData();
   initTheme();
   initPreloader();
   
   // Render content
   renderGallery();
   renderThemes();
-  updateContactEmail();
+  renderServices();
+  renderCaricatureShowcase();
+  updateContactInfo();
   updateExhibitionStatus();
   
   // Interactions
@@ -95,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initBackToTop();
   initCalendarDownload();
+  initAnimatedCounters();
 });
 
 window.addEventListener('load', () => {
@@ -109,11 +142,30 @@ window.addEventListener('load', () => {
       el.style.opacity = 1;
       el.style.transform = 'none';
     });
-    document.querySelector('.mask-reveal').style.clipPath = 'inset(0 0 0 0)';
+    document.querySelectorAll('.mask-reveal').forEach(el => el.style.clipPath = 'inset(0 0 0 0)');
   }
   
   initLightbox(); // Safe to init after gallery is rendered
 });
+
+// ==========================================
+// COMPONENT: Inject Brand Data
+// ==========================================
+function injectBrandData() {
+  document.querySelectorAll('.brand-name').forEach(el => el.textContent = portfolioData.brandName);
+  document.querySelectorAll('.artist-name').forEach(el => el.textContent = portfolioData.artistName);
+  document.querySelectorAll('.social-handle').forEach(el => {
+    el.textContent = portfolioData.instagramHandle;
+    el.href = portfolioData.instagramUrl;
+  });
+  
+  // WhatsApp Link Setup
+  const waLinks = document.querySelectorAll('.wa-link');
+  waLinks.forEach(el => {
+    const encodedMsg = encodeURIComponent(portfolioData.contact.whatsappMsg);
+    el.href = `https://wa.me/${portfolioData.contact.phone.replace('+','')}?text=${encodedMsg}`;
+  });
+}
 
 // ==========================================
 // COMPONENT: Theme Toggle
@@ -131,9 +183,7 @@ function initTheme() {
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       currentTheme = 'dark';
     }
-  } catch (e) {
-    // LocalStorage blocked
-  }
+  } catch (e) {}
   
   root.setAttribute('data-theme', currentTheme);
 
@@ -192,7 +242,7 @@ function initPreloader() {
 // ==========================================
 function initGSAPAnimations() {
   // 1. Hero Reveal (fires after preloader)
-  const heroTl = gsap.timeline({ delay: 1.5 }); // Wait for preloader roughly
+  const heroTl = gsap.timeline({ delay: 1.5 });
   
   heroTl.to('.hero-title .line-inner', {
     y: '0%',
@@ -328,9 +378,88 @@ function initFilmstrip() {
   });
 
   tl.to(track, {
-    x: () => -(track.scrollWidth - window.innerWidth + 64), // 64 is padding
+    x: () => -(track.scrollWidth - window.innerWidth + 64),
     ease: "none"
   });
+}
+
+function initAnimatedCounters() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || typeof gsap === 'undefined') return;
+
+  const counters = document.querySelectorAll('.stat-num');
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'));
+    if(isNaN(target)) return;
+    
+    gsap.fromTo(counter, 
+      { innerHTML: 0 },
+      {
+        innerHTML: target,
+        duration: 2,
+        ease: "power3.out",
+        snap: { innerHTML: 1 },
+        scrollTrigger: {
+          trigger: counter,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
+  });
+}
+
+// ==========================================
+// COMPONENT: Services Render
+// ==========================================
+function renderServices() {
+  const grid = document.getElementById('services-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  portfolioData.services.forEach((service) => {
+    const card = document.createElement('div');
+    card.className = `service-card reveal ${service.isHero ? 'service-card-hero' : ''}`;
+    
+    card.innerHTML = `
+      <h3>${service.title}</h3>
+      <p>${service.description}</p>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderCaricatureShowcase() {
+  const showcase = document.getElementById('caricature-showcase');
+  if (!showcase) return;
+
+  if (portfolioData.caricatures.length === 0) {
+    if (!portfolioData.showCaricatureSlots) {
+      showcase.style.display = 'none';
+      return;
+    }
+    
+    // Render empty framed slots
+    showcase.innerHTML = '';
+    for(let i=0; i<4; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'caricature-slot empty';
+      slot.innerHTML = `<span class="empty-label">Caricature sample coming soon</span>`;
+      showcase.appendChild(slot);
+    }
+  } else {
+    // Render real images
+    showcase.innerHTML = '';
+    portfolioData.caricatures.forEach(caricature => {
+      const slot = document.createElement('div');
+      slot.className = 'caricature-slot filled';
+      slot.innerHTML = `
+        <img src="${caricature.src}" alt="${caricature.alt}" loading="lazy">
+        <div class="slot-caption">${caricature.caption}</div>
+      `;
+      showcase.appendChild(slot);
+    });
+  }
 }
 
 // ==========================================
@@ -340,22 +469,30 @@ function renderGallery() {
   const track = document.getElementById('gallery-grid');
   if (!track) return;
   
-  track.innerHTML = ''; // clear static fallback if any
+  track.innerHTML = '';
 
   portfolioData.artworks.forEach((artwork, index) => {
     const item = document.createElement('div');
-    item.className = 'gallery-item magnetic-container';
+    item.className = 'gallery-item magnetic-container gallery-framed';
     item.setAttribute('tabindex', '0');
     item.setAttribute('role', 'button');
     item.setAttribute('aria-label', `View ${artwork.title}`);
     item.dataset.index = index;
     
+    const num = (index + 1).toString().padStart(2, '0');
+    const total = portfolioData.artworks.length.toString().padStart(2, '0');
+    
     item.innerHTML = `
-      <picture>
-        <source srcset="${artwork.imageWebp}" type="image/webp">
-        <img src="${artwork.imageSrc}" alt="${artwork.alt}" loading="lazy">
-      </picture>
+      <div class="framed-mat">
+        <picture>
+          <source srcset="${artwork.imageWebp}" type="image/webp">
+          <img src="${artwork.imageSrc}" alt="${artwork.alt}" loading="lazy">
+        </picture>
+      </div>
       <div class="gallery-caption">
+        <div class="caption-header">
+          <div class="caption-index">${num} / ${total}</div>
+        </div>
         <div class="caption-title">${artwork.title}</div>
         <div class="caption-meta">${artwork.medium}, ${artwork.year}</div>
       </div>
@@ -462,7 +599,6 @@ function closeLightbox() {
 function navigateLightbox(dir) {
   const img = document.getElementById('lightbox-img');
   
-  // Subtle fade out
   if(typeof gsap !== 'undefined') gsap.to(img, {opacity: 0, duration: 0.2});
   else img.style.opacity = 0;
 
@@ -489,7 +625,10 @@ function updateLightboxContent() {
   img.alt = artwork.alt;
   title.textContent = artwork.title;
   meta.textContent = `${artwork.medium}, ${artwork.year}`;
-  counter.textContent = `${currentLightboxIndex + 1} / ${portfolioData.artworks.length}`;
+  
+  const num = (currentLightboxIndex + 1).toString().padStart(2, '0');
+  const total = portfolioData.artworks.length.toString().padStart(2, '0');
+  counter.textContent = `${num} / ${total}`;
 }
 
 // ==========================================
@@ -506,8 +645,11 @@ function renderThemes() {
     
     item.innerHTML = `
       <button class="accordion-header" aria-expanded="${idx === 0}">
-        <span class="acc-num">0${idx + 1}</span>
-        <h3 class="acc-title">${theme.title}</h3>
+        <div class="acc-title-wrap">
+          <span class="acc-num">0${idx + 1}</span>
+          <h3 class="acc-title">${theme.title}</h3>
+        </div>
+        <svg class="acc-arrow" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
       <div class="accordion-content">
         <div class="acc-inner">
@@ -521,14 +663,12 @@ function renderThemes() {
 
     const btn = item.querySelector('.accordion-header');
     btn.addEventListener('click', () => {
-      // Close others
       document.querySelectorAll('.accordion-item').forEach(el => {
         if (el !== item) {
           el.classList.remove('active');
           el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
         }
       });
-      // Toggle current
       const isActive = item.classList.contains('active');
       item.classList.toggle('active');
       btn.setAttribute('aria-expanded', !isActive);
@@ -547,15 +687,13 @@ function updateExhibitionStatus() {
 
   const now = new Date();
   if (now < EXH_START) {
-    badge.textContent = "Upcoming Exhibition";
+    badge.textContent = "Upcoming";
   } else if (now >= EXH_START && now <= EXH_END) {
     badge.textContent = "Now Showing";
-    badge.style.borderColor = "var(--color-primary)";
-    badge.style.color = "var(--color-primary)";
+    badge.classList.add('status-active');
   } else {
     badge.textContent = "Recently Featured";
-    badge.style.borderColor = "var(--color-text-light)";
-    badge.style.color = "var(--color-text-light)";
+    badge.classList.add('status-past');
   }
 }
 
@@ -564,25 +702,24 @@ function initCalendarDownload() {
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    // Generate .ics content
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Kajal Mehta Portfolio//EN
+PRODID:-//${portfolioData.brandName} Portfolio//EN
 BEGIN:VEVENT
-UID:${Date.now()}@kajalmehta.art
+UID:${Date.now()}@${portfolioData.brandName.toLowerCase()}.art
 DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
 DTSTART:20261003T033000Z
 DTEND:20261008T163000Z
-SUMMARY:Bharat Art Conclave 2026 (Kajal Mehta)
+SUMMARY:Bharat Art Conclave 2026 (${portfolioData.artistName})
 LOCATION:Civil Services Officers' Institute, Chanakyapuri, New Delhi
-DESCRIPTION:Exhibition featuring works by Visual Artist Kajal Mehta.
+DESCRIPTION:Exhibition featuring works by Visual Artist ${portfolioData.artistName}.
 END:VEVENT
 END:VCALENDAR`;
 
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Kajal_Mehta_Exhibition.ics');
+    link.setAttribute('download', `${portfolioData.brandName}_Exhibition.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -602,18 +739,14 @@ function initNavigation() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     
-    // Background style
     if (currentScroll > 50) header.classList.add('scrolled');
     else header.classList.remove('scrolled');
 
-    // Hide/Show on scroll direction
     if (currentScroll > lastScroll && currentScroll > 200) {
-      header.classList.add('hidden'); // Scrolling down
-      if(nav.classList.contains('active')) {
-        toggle.click(); // Close mobile menu if open
-      }
+      header.classList.add('hidden');
+      if(nav.classList.contains('active')) toggle.click();
     } else {
-      header.classList.remove('hidden'); // Scrolling up
+      header.classList.remove('hidden');
     }
     
     lastScroll = currentScroll;
@@ -640,7 +773,6 @@ function initCustomCursor() {
   const cursor = document.getElementById('custom-cursor');
   if (!cursor || window.matchMedia('(pointer: coarse)').matches) return;
 
-  // Fast cursor tracking (outside GSAP tick for responsiveness)
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let cursorX = mouseX;
@@ -652,7 +784,6 @@ function initCustomCursor() {
     if (!cursor.classList.contains('active')) cursor.classList.add('active');
   });
 
-  // Smooth follow loop
   function renderCursor() {
     cursorX += (mouseX - cursorX) * 0.2;
     cursorY += (mouseY - cursorY) * 0.2;
@@ -661,8 +792,7 @@ function initCustomCursor() {
   }
   requestAnimationFrame(renderCursor);
 
-  // Hover states
-  document.querySelectorAll('a, button, input, textarea, .theme-toggle').forEach(el => {
+  document.querySelectorAll('a, button, input, textarea, select, .theme-toggle').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover-magnetic'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover-magnetic'));
   });
@@ -691,19 +821,29 @@ function initCustomCursor() {
 // ==========================================
 // COMPONENT: Form & Contact
 // ==========================================
-function updateContactEmail() {
-  const emailEl = document.getElementById('contact-email');
-  if (!emailEl) return;
+function updateContactInfo() {
+  const emailLines = document.querySelectorAll('.email-line');
+  const phoneLines = document.querySelectorAll('.phone-line');
   
   const emailStr = portfolioData.contact.email;
+  
   if (!emailStr || emailStr.trim() === "") {
-    emailEl.style.display = 'none';
+    emailLines.forEach(el => el.style.display = 'none');
   } else {
-    emailEl.textContent = emailStr;
-    // Extract actual email if placeholder text exists
-    const cleanEmail = emailStr.split(' ')[0];
-    emailEl.href = `mailto:${cleanEmail}`;
+    emailLines.forEach(el => {
+      if(el.tagName === 'A') {
+        el.href = `mailto:${emailStr}`;
+        el.textContent = emailStr;
+      }
+    });
   }
+  
+  phoneLines.forEach(el => {
+    if(el.tagName === 'A') {
+      el.href = `tel:${portfolioData.contact.phone}`;
+      el.textContent = portfolioData.contact.displayPhone;
+    }
+  });
 }
 
 function initContactForm() {
@@ -715,9 +855,8 @@ function initContactForm() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Honeypot check
     const honey = document.querySelector('input[name="_honey"]').value;
-    if (honey) return; // Bot detected, silently abort
+    if (honey) return; 
     
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -738,12 +877,10 @@ function initContactForm() {
       return;
     }
     
-    // Success State
     form.reset();
     msgContainer.textContent = 'Thank you! Your message has been sent successfully.';
     msgContainer.classList.add('success');
     
-    // Confetti-free success animation (slide down and fade)
     msgContainer.style.opacity = 0;
     msgContainer.style.transform = 'translateY(-10px)';
     if(typeof gsap !== 'undefined') {
